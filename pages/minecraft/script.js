@@ -9,7 +9,10 @@ canvas.height = window.innerHeight;
 
 const scale = 1;
 
-const convertTo2d = ({ x, y, z }, width = 1920, height = 1080) => {
+const convertTo2d = (obj, width = 1920, height = 1080) => {
+  console.log("%cscript.js line:13 obj", "color: #007acc;", obj);
+  const { x, y, z } = obj;
+  assert(x && y && z);
   const x3d = y * scale;
   const y3d = z * scale;
   const depth = x * scale;
@@ -55,3 +58,26 @@ class Tetrahedron {
     this.polygons.forEach((polygon) => polygon.draw(ctx));
   }
 }
+// create all 8 points of a cube
+const s = 10;
+const points = [
+  { x: s / 2, y: -s / 2, z: -s / 2 },
+  { x: 1, y: -1, z: -1 },
+  { x: 1, y: 1, z: -1 },
+  { x: -1, y: 1, z: -1 },
+  { x: -1, y: -1, z: 1 },
+  { x: 1, y: -1, z: 1 },
+  { x: 1, y: 1, z: 1 },
+  { x: -1, y: 1, z: 1 },
+];
+points.forEach((p) => {
+  p.x *= s;
+  p.y *= s;
+  p.z *= s;
+});
+const polys = points.map((p) => {
+  console.log("creating new polygon", p);
+  return new Polygon(p);
+});
+const tetra = new Tetrahedron(polys);
+tetra.draw(ctx);
