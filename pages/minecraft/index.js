@@ -3,8 +3,8 @@ import { init } from "pages/_app.js";
 
 export default function Minecraft() {
   useEffect(() => {
-    require("./script.js");
     init();
+    require("./script.js");
   }, []);
   return (
     <>
