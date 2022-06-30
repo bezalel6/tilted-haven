@@ -26,6 +26,7 @@ class Link {
     this.x = x;
     this.y = y;
     this.size = 50;
+    this.stopMe = true;
   }
 }
 class Snake {
@@ -40,16 +41,38 @@ class Snake {
       this.parts[0].x += dirX * speed;
       this.parts[0].y += dirY * speed;
       this.parts.forEach((part, index) => {
-        // if(index<this.parts.length-1){
-        //   part.x = this.parts[index+1]
-        //   part.y += dirY * speed;
-        // }
+        if (part.stopMe === true) {
+          part.stopMe = 1;
+          return;
+        } else if (part.stopMe === 1) {
+          part.stopMe = 2;
+          return;
+        }
+        if (index >= 1) {
+          part.x = this.parts[index - 1].x;
+          part.y = this.parts[index - 1].y;
+        }
       });
     }, 100);
   }
   update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = "black";
     this.parts.forEach((part) => {
+      if (part.x < 0) {
+        part.x = canvas.width - part.size;
+      }
+      if (part.x > canvas.width - part.size) {
+        part.x = 0;
+      }
+      if (part.y < 0) {
+        part.y = canvas.height - part.size;
+      }
+      if (part.y > canvas.height - part.size) {
+        part.y = 0;
+      }
+      // fillrect but clip if getting out of bounds
+
       ctx.fillRect(part.x, part.y, part.size, part.size);
     });
     // console.log("first");
@@ -61,8 +84,8 @@ let dirX = 0,
 const speed = 60;
 // listen for arrow keys
 document.addEventListener("keydown", function (event) {
-  dirX = dirY = 0;
   if (event.code.startsWith("Arrow")) {
+    dirX = dirY = 0;
     if (event.code.endsWith("Up")) {
       dirY = -1;
     }
@@ -76,12 +99,25 @@ document.addEventListener("keydown", function (event) {
       dirX = 1;
     }
   }
+  if (event.key.toLowerCase() == "e") {
+    snake.parts.push(
+      new Link(
+        snake.parts[snake.parts.length - 1].x,
+        snake.parts[snake.parts.length - 1].y
+      )
+    );
+  }
+  console.log("%cscript.js line:106 event.key", "color: #007acc;", event.key);
+  if (event.key == "q") {
+    console.log("%cscript.js line:107 snake", "color: #007acc;", snake);
+  }
 });
 // mouse click
+let snake;
 canvas.addEventListener("mouseup", function (event) {
-  new Snake(event.x, event.y).update();
+  snake = new Snake(event.x, event.y);
+  snake.update();
 });
-
 module.exports = {
   connect: function () {},
 };

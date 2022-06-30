@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
 import { init } from "pages/_app.js";
+import Manage, { add } from "./manager.js";
 // import CleanUp from "./script.js";
 
 export default function Minecraft() {
   useEffect(() => {
     init();
-    var clean = require("./script.js");
-    // clean();
-    console.log("%cindex.js line:10 clean", "color: #007acc;", clean.default);
-    return () => console.log("this is returning");
+    // require("./script.js");
   }, []);
   // useEffect(() => {
   //   return () => {
@@ -17,7 +15,8 @@ export default function Minecraft() {
   // });
   return (
     <>
-      <canvas id="canvas1"></canvas>
+      {/* <canvas id="canvas1"></canvas> */}
+      <Manage></Manage>
     </>
   );
 }

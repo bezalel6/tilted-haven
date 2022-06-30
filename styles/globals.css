@@ -19,6 +19,41 @@ main {
   align-items: center;
 }
 
+.top {
+  top: 0 !important;
+  position: fixed;
+  /* color: white; */
+  color: #333;
+}
+.fixme {
+  position: fixed;
+}
+.clicky {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.instructions {
+  /* set to pretty font */
+  font-family: "Courier New", Courier, monospace;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* z-index: -1; */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* hide if .instructions hide is set to true */
+.instructions[hide="true"] {
+  display: none;
+}
 code {
   background: #fafafa;
   border-radius: 5px;
@@ -30,7 +65,17 @@ code {
   --typewriterSpeed: 3s;
   --typewriterCharacters: 24;
 }
+a {
+  /* border */
 
+  text-decoration: none;
+  color: #333;
+}
+a::before {
+  /* add icon before link*/
+  content: "🔗";
+  margin-right: 0.5rem;
+}
 body {
   margin: 0;
   font-family: "Source Sans Pro", sans-serif;

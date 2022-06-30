@@ -27,7 +27,7 @@ function Application({ Component, pageProps }) {
     setIsHome(setting);
   }, []);
   return (
-    <>
+    <div className="top">
       {numLost && (
         <>
           you lost {numLost} games in a row!<br></br>
@@ -54,9 +54,10 @@ function Application({ Component, pageProps }) {
             disabled={diabledd}
           ></Button>
         )}
+        {<a href="https://github.com/bezalel6/tilted-haven">Source</a>}
       </div>
       <Component {...pageProps} />
-    </>
+    </div>
   );
 }
 
