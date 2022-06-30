@@ -1,6 +1,6 @@
 import Button from "@components/VideoBtn";
 import { useEffect, useRef } from "react";
-import createBlock, { scaleFunc } from "./block";
+import { createBlock, scaleFunc } from "./block";
 
 let entities;
 

@@ -3,7 +3,7 @@ import { init } from "pages/_app.js";
 import Manage, { add } from "./manager.js";
 // import CleanUp from "./script.js";
 
-export default function Minecraft() {
+export default function Cubes() {
   useEffect(() => {
     init();
     // require("./script.js");

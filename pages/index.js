@@ -8,7 +8,7 @@ import { init } from "./_app";
 import styles from "../styles/Buttons.module.css";
 
 const CALM = ["nwg7Jk0Gjoc"],
-  ENTERTAINING = ["g-epFZZ4ftE"];
+  ENTERTAINING = ["g-epFZZ4ftE", "bf9nXS9rmuw"];
 
 export default function Home() {
   const [src, setSrc] = useState("");
@@ -81,16 +81,30 @@ export default function Home() {
             <div className={styles.buttons_container}>
               <Button
                 src=""
-                text="Drawing Thing"
-                setSrc={() => {
-                  location.pathname += "/drawing-thing";
+                text="Knight"
+                setSrc={(a) => {
+                  location.pathname += "/knight";
                 }}
               ></Button>
               <Button
-                src="https://www.funnyhowtheknightmoves.com/"
-                text="Knight"
+                src=""
+                text="Minecraft"
                 setSrc={(a) => {
-                  location.replace(a);
+                  location.pathname += "/three-minecraft";
+                }}
+              ></Button>
+              <Button
+                src=""
+                text="Cubes"
+                setSrc={(a) => {
+                  location.pathname += "/cubes";
+                }}
+              ></Button>
+              <Button
+                src=""
+                text="Snake"
+                setSrc={(a) => {
+                  location.pathname += "/snake";
                 }}
               ></Button>
             </div>

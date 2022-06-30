@@ -1,7 +1,7 @@
 /**
  @type {HTMLCanvasElement}
  */
-export default function createBlock(location, s = 100) {
+export function createBlock(location, s = 100) {
   const points = [
     { x: s / 2, y: -s / 2, z: -s / 2 },
     { x: s / 2, y: s / 2, z: -s / 2 },
@@ -30,6 +30,10 @@ export default function createBlock(location, s = 100) {
   tetra.location = location;
   return tetra;
 }
+export default function isAScam() {
+  return <>you shouldnt see this</>;
+}
+
 // const canvas = document.getElementById("canvas1");
 // const ctx = canvas.getContext("2d");
 // canvas.width = window.innerWidth;
@@ -180,6 +184,9 @@ class Tetrahedron {
   }
 }
 
+// export default function isAScam(){
+//   return <>you shouldnt see this</>
+// }
 // if (localStorage.lastId) {
 //   clearInterval(localStorage.lastId);
 // }

@@ -5,12 +5,14 @@ import styles from "../styles/Buttons.module.css";
 
 let updateOutside, outsideLeft, setDisabled;
 
+const fixTop = ["minecraft"];
 const tiltTakes = 10 * 60 * 1000;
 let numLost;
 function Application({ Component, pageProps }) {
   const [left, setLeft] = useState(0);
   const [isHome, setIsHome] = useState(true);
   const [diabledd, setDisabledd] = useState(true);
+  const [currentUrl, setUrl] = useState();
   useEffect(() => {
     updateOutside = setLeft;
     outsideLeft = left;
@@ -25,9 +27,23 @@ function Application({ Component, pageProps }) {
     }
     const setting = location.pathname.replace("/", "") == "";
     setIsHome(setting);
+    setUrl(location.pathname);
   }, []);
   return (
-    <div className="top">
+    <div
+      className={
+        "top" +
+        (fixTop.find((str) => {
+          try {
+            return currentUrl && currentUrl.includes(str);
+          } catch {
+            return false;
+          }
+        })
+          ? " fixme"
+          : "")
+      }
+    >
       {numLost && (
         <>
           you lost {numLost} games in a row!<br></br>
@@ -35,6 +51,7 @@ function Application({ Component, pageProps }) {
       )}
 
       {convertMsToHMS(left)}
+      {<a href="https://github.com/bezalel6/tilted-haven">Source</a>}
       <div className={styles.buttons_container}>
         {!diabledd && (
           <Button
@@ -51,10 +68,8 @@ function Application({ Component, pageProps }) {
             setSrc={() => {
               location.pathname = "";
             }}
-            disabled={diabledd}
           ></Button>
         )}
-        {<a href="https://github.com/bezalel6/tilted-haven">Source</a>}
       </div>
       <Component {...pageProps} />
     </div>

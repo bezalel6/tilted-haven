@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import styles from "@styles/Minecraft.module.css";
 import * as THREE from "three";
-import { PointerLockControls } from "./PointerLockControls";
+import { PointerLockControls } from "./lib/PointerLockControls";
 import Stats from "./stats.module.js";
-import { BoxGeometry, Mesh, MeshBasicMaterial } from "three";
+import { BoxGeometry, Mesh, MeshBasicMaterial, TextureLoader } from "three";
 
 const initScene = () => {
   //   const stats = new Stats();
@@ -29,10 +29,13 @@ const initScene = () => {
   const light = new THREE.AmbientLight(0xffffff);
   scene.add(light);
 
-  var groundMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+  var groundMaterial = new THREE.MeshBasicMaterial({
+    opacity: 0,
+    transparent: true,
+  });
 
   var mesh = new THREE.Mesh(
-    new THREE.PlaneBufferGeometry(10000, 10000),
+    new THREE.PlaneBufferGeometry(100, 100),
     groundMaterial
   );
 
@@ -77,6 +80,21 @@ const initScene = () => {
   var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
   camera.add(cube);
   cube.position.set(0, 0, -55);
+
+  function addStar() {
+    const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+    const star = new THREE.Mesh(geometry, material);
+
+    const [x, y, z] = Array(3)
+      .fill()
+      .map(() => THREE.MathUtils.randFloatSpread(100));
+
+    star.position.set(x, y, z);
+    scene.add(star);
+  }
+
+  // Array(200).fill().forEach(addStar);
 
   const speed = 0.5;
   const clicked = {};
@@ -243,6 +261,8 @@ const initScene = () => {
       scene.add(new Cube(i * Cube.size, -10, j * Cube.size));
     }
   }
+
+  scene.background = new TextureLoader().load("/minecraft/space.jpg");
   anim();
 };
 

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 const Play = (props) => {
   useEffect(() => {
-    require("./script.js");
+    require("./lib/script.js");
     init();
   }, []);
   return (

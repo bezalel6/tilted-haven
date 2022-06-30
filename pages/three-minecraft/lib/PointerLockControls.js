@@ -155,3 +155,6 @@ class PointerLockControls extends EventDispatcher {
 }
 
 export { PointerLockControls };
+export default function isAScam() {
+  return <>you shouldnt see this</>;
+}
