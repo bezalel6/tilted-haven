@@ -5,7 +5,7 @@ import onInit from "./lib/script";
 const Play = (props) => {
   useEffect(() => {
     // require("./lib/script.js");
-    onInit(document);
+    if (process.browser) onInit(document);
     init();
   }, []);
   return (

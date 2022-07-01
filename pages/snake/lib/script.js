@@ -2,7 +2,14 @@
  @type {HTMLCanvasElement}
  */
 
-export default function onInit(document) {
+export default function onInit(_document) {
+  try {
+    if (window == "undefined") {
+      return;
+    }
+  } catch (e) {
+    return;
+  }
   const canvas = document.getElementById("canvas1");
   const ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth - 100;
