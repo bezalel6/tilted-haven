@@ -1,3 +1,7 @@
+:root {
+  --text-clr: #000;
+}
+
 html,
 body {
   padding: 0;
@@ -24,7 +28,7 @@ main {
   top: 0 !important;
   /* position: fixed; */
   /* color: white; */
-  color: white;
+  color: var(--text-clr);
   font-size: 1.5em;
   z-index: 1;
 }
@@ -34,7 +38,9 @@ main {
 }
 .clicky {
   background-color: red;
-  color: white;
+  /* color: white; */
+  color: var(--text-clr);
+
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;

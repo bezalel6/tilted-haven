@@ -26,8 +26,8 @@ export default function Home() {
   };
   // const router = useRouter();
   useEffect(() => {
-    const lost = location.href.includes("=")
-      ? location.href.substring(location.href.indexOf("=") + 1)
+    const lost = location.href.includes("lost=")
+      ? location.href.substring(location.href.indexOf("lost=") + "lost=".length)
       : null;
     init(parseInt(lost));
     // mySetSrc("dQw4w9WgXcQ");

@@ -2,16 +2,7 @@
  @type {HTMLCanvasElement}
  */
 
-try {
-  if (!document) {
-    throw new Error("document is undefined");
-  }
-  onInit();
-} catch {
-  // return;
-}
-
-const onInit = () => {
+export default function onInit(document) {
   const canvas = document.getElementById("canvas1");
   const ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth - 100;
@@ -133,8 +124,8 @@ const onInit = () => {
     snake = new Snake(event.x, event.y);
     snake.update();
   });
-};
-
-export default function isAScam() {
-  return <>you shouldnt see this</>;
 }
+
+// export default function isAScam() {
+//   return <>you shouldnt see this</>;
+// }
