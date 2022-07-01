@@ -78,7 +78,7 @@ function Application({ Component, pageProps }) {
 
 export default Application;
 
-export const init = (numLostGames) => {
+export const init = (numLostGames, cooldown) => {
   if (!numLost && numLostGames) numLost = numLostGames;
   if (typeof window == "undefined") {
     return;
@@ -86,16 +86,16 @@ export const init = (numLostGames) => {
 
   const inter = setInterval(() => {
     if (updateOutside) {
-      a(numLostGames);
+      a(numLostGames, cooldown);
       clearInterval(inter);
     }
   }, 100);
 };
-function a(numLostGames) {
+function a(numLostGames, cooldown) {
   let obj = JSON.parse(localStorage.getItem("tilt"));
   if (numLostGames && (!obj || !obj.start)) {
     console.log("didnt find");
-    obj = { start: Date.now(), tilt: tiltTakes };
+    obj = { start: Date.now(), tilt: cooldown * 60 * 1000 };
     updateOutside(obj.tilt);
   } else if (!obj && !numLostGames) {
     setDisabled(false);

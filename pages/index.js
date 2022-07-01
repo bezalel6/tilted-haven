@@ -24,12 +24,10 @@ export default function Home() {
 
     setSrc("https://www.youtube.com/embed/" + vidId + "?autoplay=1");
   };
-  // const router = useRouter();
   useEffect(() => {
-    const lost = location.href.includes("lost=")
-      ? location.href.substring(location.href.indexOf("lost=") + "lost=".length)
-      : null;
-    init(parseInt(lost));
+    // get query params from url
+    const query = new URLSearchParams(window.location.search);
+    init(parseInt(query.get("lost")), parseInt(query.get("cooldown")));
     // mySetSrc("dQw4w9WgXcQ");
   }, []);
 
