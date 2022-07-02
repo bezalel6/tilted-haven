@@ -29,7 +29,7 @@ export default function Home() {
     const query = new URLSearchParams(window.location.search);
     init(parseInt(query.get("lost")), parseInt(query.get("cooldown")));
     // mySetSrc("dQw4w9WgXcQ");
-    if (location.search) location.replace(location.pathname);
+    // if (location.search) location.replace(location.pathname);
   }, []);
 
   return (

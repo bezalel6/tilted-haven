@@ -10,7 +10,7 @@ let setterLost;
 function Application({ Component, pageProps }) {
   const [left, setLeft] = useState(0);
   const [isHome, setIsHome] = useState(true);
-  const [diabledd, setDisabledd] = useState(true);
+  const [lichessDisabled, setDisabledd] = useState(true);
   const [currentUrl, setUrl] = useState();
   const [lostNumSS, setLost] = useState(0);
   useEffect(() => {
@@ -54,13 +54,13 @@ function Application({ Component, pageProps }) {
       {convertMsToHMS(left)}
       {<a href="https://github.com/bezalel6/tilted-haven">Source</a>}
       <div className={styles.buttons_container}>
-        {!diabledd && (
+        {!lichessDisabled && (
           <Button
             text="lichess"
             setSrc={() => {
               location.replace("https://lichess.org/");
             }}
-            disabled={diabledd}
+            disabled={lichessDisabled}
           ></Button>
         )}
         {!isHome && (
@@ -130,17 +130,18 @@ function a(numLostGames, cooldown) {
   localStorage.setItem("tilt", JSON.stringify(obj));
   console.log("starting timer");
   setInterval(() => {
-    setDisabled(outsideLeft > 0);
     if (outsideLeft < 0 && updateOutside) {
       updateOutside(0);
     } else if (outsideLeft >= 1000 && updateOutside) {
       updateOutside(outsideLeft - 1000);
     }
+    setDisabled(outsideLeft > 0);
     if (outsideLeft <= 0) {
       localStorage.removeItem("tilt");
       // if (numLostGames) a(numLostGames);
     }
   }, 1000);
+  if (numLostGames && cooldown) location.replace(location.pathname);
 }
 function padTo2Digits(num) {
   return num.toString().padStart(2, "0");
