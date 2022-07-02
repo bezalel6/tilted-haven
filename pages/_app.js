@@ -84,6 +84,28 @@ export const init = (numLostGames, cooldown) => {
     return;
   }
 
+  const pressed = {};
+  const magicKey = "Space";
+  document.addEventListener("keydown", (e) => {
+    console.log("%c_app.js line:90 e", "color: #007acc;", e);
+    console.log("%c_app.js line:90 pressed", "color: #007acc;", pressed);
+    if (e.ctrlKey) pressed.ctrl = true;
+    if (e.shiftKey) pressed.shiftKey = true;
+    if (e.code == magicKey) pressed.esc = true;
+    if (pressed.ctrl && pressed.shiftKey && pressed.esc) {
+      e.preventDefault();
+      console.log("bruh");
+      localStorage.removeItem("tilt");
+      location.reload();
+    }
+  });
+  // listen for key up
+  document.addEventListener("keyup", (e) => {
+    if (e.ctrlKey) pressed.ctrl = false;
+    if (e.shiftKey) pressed.shiftKey = false;
+    if (e.code == magicKey) pressed.esc = false;
+  });
+
   const inter = setInterval(() => {
     if (updateOutside) {
       a(numLostGames, cooldown);
@@ -95,17 +117,15 @@ function a(numLostGames, cooldown) {
   let obj = JSON.parse(localStorage.getItem("tilt"));
   if (numLostGames && (!obj || !obj.start)) {
     console.log("didnt find");
-    obj = { start: Date.now(), tilt: cooldown * 60 * 1000 };
+    obj = { start: Date.now(), tilt: cooldown * 60 * 1000, lost: numLostGames };
     console.log("%c_app.js line:99 obj", "color: #007acc;", obj);
     updateOutside(obj.tilt);
-    // go to this url without the query params
-    location.replace(location.pathname);
   } else if (!obj && !numLostGames) {
     setDisabled(false);
     localStorage.removeItem("tilt");
-    //a();
     return;
   }
+  numLost = obj.lost;
   const elapsed = Date.now() - obj.start;
   updateOutside(obj.tilt - elapsed);
   localStorage.setItem("tilt", JSON.stringify(obj));
