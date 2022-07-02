@@ -10,8 +10,9 @@ export default function Manage() {
   entities = [];
   let canvasRef = useRef(null);
   useEffect(() => {
-    canvasRef.current.width = window.innerWidth;
-    canvasRef.current.height = window.innerHeight;
+    canvasRef.current.width = window.innerWidth - 100;
+    canvasRef.current.height = window.innerHeight - 400;
+    // canvasRef.current.height = window.innerHeight;
     let clicking = false;
     canvasRef.current.addEventListener(
       "mousedown",
@@ -91,12 +92,12 @@ export default function Manage() {
   return (
     <>
       <Button
-        text="Spawn"
+        text="Spawn Cube"
         setSrc={() => {
           // spawb a block and add it to the list of entities at a random location on the screen
           const location = {
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * canvasRef.current.width,
+            y: Math.random() * canvasRef.current.height,
             z: 0,
           };
           const block = createBlock(location);

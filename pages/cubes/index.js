@@ -17,7 +17,7 @@ export default function Cubes() {
     <>
       <div className="yep">
         <h4>i wrote this without using a 3d library</h4>
-        <p>(yes. this is a flex)</p>
+        <p>(yes. this is a flex) </p>
         <h4>
           you can drag with your mouse to spin all the cubes, or click on one
           and spin it
