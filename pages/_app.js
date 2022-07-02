@@ -52,7 +52,6 @@ function Application({ Component, pageProps }) {
       )}
 
       {convertMsToHMS(left)}
-      {<a href="https://github.com/bezalel6/tilted-haven">Source</a>}
       <div className={styles.buttons_container}>
         {!lichessDisabled && (
           <Button

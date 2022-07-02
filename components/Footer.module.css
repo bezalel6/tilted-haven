@@ -11,3 +11,9 @@
   height: 1em;
   margin: 5px;
 }
+
+.github {
+  /* position: fixed; */
+  bottom: 0;
+  width: 100;
+}
