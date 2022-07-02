@@ -6,16 +6,18 @@ import styles from "../styles/Buttons.module.css";
 let updateOutside, outsideLeft, setDisabled;
 
 const fixTop = ["minecraft"];
-let numLost;
+let setterLost;
 function Application({ Component, pageProps }) {
   const [left, setLeft] = useState(0);
   const [isHome, setIsHome] = useState(true);
   const [diabledd, setDisabledd] = useState(true);
   const [currentUrl, setUrl] = useState();
+  const [lostNumSS, setLost] = useState(0);
   useEffect(() => {
     updateOutside = setLeft;
     outsideLeft = left;
     setDisabled = setDisabledd;
+    setterLost = setLost;
     return () => (updateOutside = setDisabled = null);
   });
   useEffect(() => {
@@ -43,9 +45,9 @@ function Application({ Component, pageProps }) {
           : "")
       }
     >
-      {numLost && (
+      {lostNumSS && (
         <>
-          you lost {numLost} games in a row!<br></br>
+          you lost {lostNumSS} games in a row<br></br>
         </>
       )}
 
@@ -78,10 +80,10 @@ function Application({ Component, pageProps }) {
 export default Application;
 
 export const init = (numLostGames, cooldown) => {
-  if (!numLost && numLostGames) numLost = numLostGames;
   if (typeof window == "undefined") {
     return;
   }
+  if (setterLost && numLostGames) setterLost(numLostGames);
 
   const pressed = {};
   const magicKey = "Space";
@@ -122,7 +124,7 @@ function a(numLostGames, cooldown) {
     localStorage.removeItem("tilt");
     return;
   }
-  numLost = obj.lost;
+  setterLost && setterLost(obj.lost);
   const elapsed = Date.now() - obj.start;
   updateOutside(obj.tilt - elapsed);
   localStorage.setItem("tilt", JSON.stringify(obj));
