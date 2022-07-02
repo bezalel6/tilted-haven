@@ -268,6 +268,8 @@ const initScene = () => {
 
 export default function ThreeMinecraft() {
   useEffect(() => {
+    // set css variable
+    document.documentElement.style.setProperty("--text-clr", "white");
     if (typeof window !== "undefined") {
       initScene();
     }
