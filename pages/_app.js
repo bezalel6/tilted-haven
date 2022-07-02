@@ -98,6 +98,8 @@ function a(numLostGames, cooldown) {
     obj = { start: Date.now(), tilt: cooldown * 60 * 1000 };
     console.log("%c_app.js line:99 obj", "color: #007acc;", obj);
     updateOutside(obj.tilt);
+    // go to this url without the query params
+    location.replace(location.pathname);
   } else if (!obj && !numLostGames) {
     setDisabled(false);
     localStorage.removeItem("tilt");
