@@ -114,6 +114,7 @@ export const init = (numLostGames, cooldown) => {
 };
 function a(numLostGames, cooldown) {
   let obj = JSON.parse(localStorage.getItem("tilt"));
+  console.log("%c_app.js line:117 obj", "color: #007acc;", obj);
   if (numLostGames && (!obj || !obj.start)) {
     console.log("didnt find");
     obj = { start: Date.now(), tilt: cooldown * 60 * 1000, lost: numLostGames };
