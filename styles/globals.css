@@ -12,6 +12,7 @@ body {
 
 * {
   box-sizing: border-box;
+  user-select: none;
 }
 
 main {
@@ -39,6 +40,9 @@ main {
 .yep {
   display: inline-block;
   /* white-space: nowrap; */
+}
+* + * {
+  margin-left: 10px;
 }
 .yep > * {
   display: inline-block;

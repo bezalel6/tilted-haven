@@ -268,7 +268,9 @@ const initScene = () => {
 
 export default function ThreeMinecraft() {
   useEffect(() => {
-    initScene();
+    if (typeof window !== "undefined") {
+      initScene();
+    }
   }, []);
   return (
     <>

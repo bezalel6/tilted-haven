@@ -6,7 +6,6 @@ import styles from "../styles/Buttons.module.css";
 let updateOutside, outsideLeft, setDisabled;
 
 const fixTop = ["minecraft"];
-const tiltTakes = 10 * 60 * 1000;
 let numLost;
 function Application({ Component, pageProps }) {
   const [left, setLeft] = useState(0);
@@ -87,8 +86,6 @@ export const init = (numLostGames, cooldown) => {
   const pressed = {};
   const magicKey = "Space";
   document.addEventListener("keydown", (e) => {
-    console.log("%c_app.js line:90 e", "color: #007acc;", e);
-    console.log("%c_app.js line:90 pressed", "color: #007acc;", pressed);
     if (e.ctrlKey) pressed.ctrl = true;
     if (e.shiftKey) pressed.shiftKey = true;
     if (e.code == magicKey) pressed.esc = true;
