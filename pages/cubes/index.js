@@ -15,7 +15,14 @@ export default function Cubes() {
   // });
   return (
     <>
-      {/* <canvas id="canvas1"></canvas> */}
+      <div className="yep">
+        <h4>i wrote this without using a 3d library</h4>
+        <p>(yes. this is a flex)</p>
+        <h4>
+          you can drag with your mouse to spin all the cubes, or click on one
+          and spin it
+        </h4>
+      </div>
       <Manage></Manage>
     </>
   );

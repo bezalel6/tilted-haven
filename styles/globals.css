@@ -36,6 +36,13 @@ main {
 .fixme {
   position: fixed;
 }
+.yep {
+  display: inline-block;
+  /* white-space: nowrap; */
+}
+.yep > * {
+  display: inline-block;
+}
 .clicky {
   background-color: red;
   /* color: white; */
@@ -85,7 +92,8 @@ a {
 a::before {
   /* add icon before link*/
   content: "🔗";
-  margin-right: 0.5rem;
+  /* margin-right: 0.5rem; */
+  margin-left: 0.5rem;
 }
 body {
   margin: 0;
