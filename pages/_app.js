@@ -96,6 +96,7 @@ function a(numLostGames, cooldown) {
   if (numLostGames && (!obj || !obj.start)) {
     console.log("didnt find");
     obj = { start: Date.now(), tilt: cooldown * 60 * 1000 };
+    console.log("%c_app.js line:99 obj", "color: #007acc;", obj);
     updateOutside(obj.tilt);
   } else if (!obj && !numLostGames) {
     setDisabled(false);
