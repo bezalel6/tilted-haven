@@ -47,7 +47,7 @@ function Application({ Component, pageProps }) {
     >
       {lostNumSS && (
         <>
-          you lost {lostNumSS} games in a row<br></br>
+          you lost {lostNumSS} game{lostNumSS > 1 ? "s" : ""} in a row<br></br>
         </>
       )}
 
@@ -121,6 +121,7 @@ function a(numLostGames, cooldown) {
     console.log("%c_app.js line:99 obj", "color: #007acc;", obj);
     updateOutside(obj.tilt);
   } else if (!obj && !numLostGames) {
+    console.log("second if");
     setDisabled(false);
     localStorage.removeItem("tilt");
     return;
@@ -138,6 +139,7 @@ function a(numLostGames, cooldown) {
     }
     setDisabled(outsideLeft > 0);
     if (outsideLeft <= 0) {
+      console.log("removing tilt");
       localStorage.removeItem("tilt");
       // if (numLostGames) a(numLostGames);
     }
