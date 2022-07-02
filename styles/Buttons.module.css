@@ -28,7 +28,7 @@
   cursor: pointer;
   line-height: 1;
   background: none;
-  padding: 0.4em 0.9em;
+  padding: 0.2em 0.7em;
   transition: outline-offset 250ms ease, outline-width 250ms ease;
 }
 .button {
