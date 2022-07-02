@@ -129,6 +129,7 @@ function a(numLostGames, cooldown) {
   setterLost && setterLost(obj.lost);
   const elapsed = Date.now() - obj.start;
   updateOutside(obj.tilt - elapsed);
+  outsideLeft = obj.tilt - elapsed;
   localStorage.setItem("tilt", JSON.stringify(obj));
   console.log("starting timer");
   setInterval(() => {
