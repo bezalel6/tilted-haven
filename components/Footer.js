@@ -4,10 +4,6 @@ export default function Footer() {
   return (
     <>
       <footer className={styles.footer}>
-        Made with{" "}
-        <img src="/netliheart.svg" alt="Netlify Logo" className={styles.logo} />{" "}
-        for you
-        {/* use font awesome */}
         <a
           href="https://github.com/bezalel6/tilted-haven"
           className={styles.github}
