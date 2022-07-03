@@ -150,7 +150,10 @@ function startTimer() {
   let last = Date.now();
   const interval = setInterval(() => {
     if (updateTimeLeft) {
-      const ll = Math.max(0, outsideLeft - Date.now() - last);
+      console.log(Date.now() - last);
+      const elapsed = Date.now() - last;
+      const ll = outsideLeft - elapsed;
+      console.log("%c_app.js line:156 ll", "color: #007acc;", ll);
       updateTimeLeft(ll);
       outsideLeft = ll;
     }
