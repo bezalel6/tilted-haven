@@ -189,6 +189,7 @@ const initScene = () => {
   });
   document.addEventListener("keydown", (e) => {
     clicked[e.key] = true;
+    console.log("%cindex.js line:192 clicked", "color: #007acc;", clicked);
     if (e.shiftKey) {
       controls.goDown = true;
     }
@@ -196,7 +197,6 @@ const initScene = () => {
   document.addEventListener("keyup", (e) => {
     clicked[e.key] = false;
     if (e.key == "Shift") {
-      console.log("turning off");
       controls.goDown = false;
     }
   });
