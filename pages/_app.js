@@ -45,7 +45,7 @@ function Application({ Component, pageProps }) {
           : "")
       }
     >
-      {lostNumSS && (
+      {lichessDisabled && lostNumSS && (
         <>
           you lost {lostNumSS} game{lostNumSS > 1 ? "s" : ""} in a row<br></br>
         </>
