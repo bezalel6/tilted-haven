@@ -4,8 +4,10 @@ import * as THREE from "three";
 import { PointerLockControls } from "./lib/PointerLockControls";
 import Stats from "./stats.module.js";
 import { BoxGeometry, Mesh, MeshBasicMaterial, TextureLoader } from "three";
+import { init } from "pages/_app";
 
 const initScene = () => {
+  init();
   //   const stats = new Stats();
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
