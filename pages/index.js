@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Footer from "@components/Footer";
-import Button from "@components/VideoBtn";
+import Button from "@components/Button";
 import { useEffect, useState } from "react";
 import MyHeader from "@components/SiteHeader";
 import { useRouter } from "next/router";

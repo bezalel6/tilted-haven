@@ -1,4 +1,4 @@
-import Button from "@components/VideoBtn";
+import Button from "@components/Button";
 import { useEffect, useRef } from "react";
 import { createBlock, scaleFunc } from "./block";
 

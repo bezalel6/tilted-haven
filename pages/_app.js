@@ -1,9 +1,9 @@
-import Button from "@components/VideoBtn";
+import Button from "@components/Button";
 import "@styles/globals.css";
 import { useEffect, useState } from "react";
 import styles from "../styles/Buttons.module.css";
 
-let updateOutside, outsideLeft, setDisabled;
+let updateTimeLeft, outsideLeft, setDisabled;
 
 const fixTop = ["minecraft"];
 let setterLost;
@@ -14,11 +14,11 @@ function Application({ Component, pageProps }) {
   const [currentUrl, setUrl] = useState();
   const [lostNumSS, setLost] = useState(0);
   useEffect(() => {
-    updateOutside = setLeft;
+    updateTimeLeft = setLeft;
     outsideLeft = left;
     setDisabled = setDisabledd;
     setterLost = setLost;
-    return () => (updateOutside = setDisabled = null);
+    return () => (updateTimeLeft = setDisabled = null);
   });
   useEffect(() => {
     const obj = JSON.parse(localStorage.getItem("tilt"));
@@ -105,20 +105,29 @@ export const init = (numLostGames, cooldown) => {
   });
 
   const inter = setInterval(() => {
-    if (updateOutside) {
-      a(numLostGames, cooldown);
+    if (updateTimeLeft) {
+      initUpdating(numLostGames, cooldown);
       clearInterval(inter);
     }
   }, 100);
 };
-function a(numLostGames, cooldown) {
+function initUpdating(numLostGames, cooldown) {
   let obj = JSON.parse(localStorage.getItem("tilt"));
   console.log("%c_app.js line:117 obj", "color: #007acc;", obj);
   if (numLostGames) {
-    console.log("didnt find");
-    obj = { start: Date.now(), tilt: cooldown * 60 * 1000, lost: numLostGames };
-    console.log("%c_app.js line:99 obj", "color: #007acc;", obj);
-    updateOutside(obj.tilt);
+    //check if there is an object of a thing already, that isnt expired already
+    if (obj && cooldown && Date.now() - obj.start < cooldown * 60 * 1000) {
+      console.log("there is a tilt thats not over yet.", obj);
+    } else {
+      console.log("didnt find");
+      obj = {
+        start: Date.now(),
+        tilt: cooldown * 60 * 1000,
+        lost: numLostGames,
+      };
+      console.log("%c_app.js line:99 obj", "color: #007acc;", obj);
+      updateTimeLeft(obj.tilt);
+    }
   } else if (!obj && !numLostGames) {
     console.log("second if");
     setDisabled(false);
@@ -127,24 +136,31 @@ function a(numLostGames, cooldown) {
   }
   setterLost && setterLost(obj.lost);
   const elapsed = Date.now() - obj.start;
-  updateOutside(obj.tilt - elapsed);
+  updateTimeLeft(obj.tilt - elapsed);
   outsideLeft = obj.tilt - elapsed;
   localStorage.setItem("tilt", JSON.stringify(obj));
   console.log("starting timer");
-  setInterval(() => {
-    if (outsideLeft < 0 && updateOutside) {
-      updateOutside(0);
-    } else if (outsideLeft >= 1000 && updateOutside) {
-      updateOutside(outsideLeft - 1000);
-    }
+
+  if (numLostGames && cooldown) location.replace(location.pathname);
+  else {
+    startTimer();
+  }
+}
+function startTimer() {
+  let last = Date.now();
+  const interval = setInterval(() => {
+    let setNew = -1;
+    if (updateTimeLeft)
+      updateTimeLeft(Math.max(0, outsideLeft - Date.now() - last));
     setDisabled(outsideLeft > 0);
     if (outsideLeft <= 0) {
       console.log("removing tilt");
       localStorage.removeItem("tilt");
+      clearInterval(interval);
       // if (numLostGames) a(numLostGames);
     }
+    last = Date.now();
   }, 1000);
-  if (numLostGames && cooldown) location.replace(location.pathname);
 }
 function padTo2Digits(num) {
   return num.toString().padStart(2, "0");
@@ -156,24 +172,14 @@ function convertMsToHMS(milliseconds) {
   let hours = Math.floor(minutes / 60);
 
   seconds = seconds % 60;
-  // // 👇️ if seconds are greater than 30, round minutes up (optional)
-  // minutes = seconds >= 30 ? minutes + 1 : minutes;
-
   minutes = minutes % 60;
 
   let timeStr = "";
-  let force = 0;
   if (hours > 0) {
     timeStr += padTo2Digits(hours) + ":";
-    force = 1;
   }
-  // if (minutes > 0 || force) {
   timeStr += padTo2Digits(minutes);
-  force = 1;
-  // }
-  // if (seconds > 0 || force) {
   timeStr += "." + padTo2Digits(seconds);
-  // }
 
   return timeStr;
 }
