@@ -73,7 +73,7 @@ export default function Manage() {
     let numRotated = 0;
 
     setInterval(() => {
-      ctx.save();
+      // ctx.save();
       ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
       if (numRotated < entities.length) {
         const entity = entities[numRotated++];
@@ -85,7 +85,7 @@ export default function Manage() {
         // ctx.moveTo(entity.location.x, entity.location.y);
         entity.draw(ctx);
       });
-      ctx.restore();
+      // ctx.restore();
     }, 10);
   }, []);
 
