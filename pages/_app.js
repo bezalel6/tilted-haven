@@ -114,7 +114,7 @@ export const init = (numLostGames, cooldown) => {
 function initUpdating(numLostGames, cooldown) {
   let obj = JSON.parse(localStorage.getItem("tilt"));
   console.log("%c_app.js line:117 obj", "color: #007acc;", obj);
-  if (numLostGames) {
+  if (numLostGames && cooldown) {
     //check if there is an object of a thing already, that isnt expired already
     if (obj && cooldown && Date.now() - obj.start < cooldown * 60 * 1000) {
       console.log("there is a tilt thats not over yet.", obj);
@@ -149,9 +149,11 @@ function initUpdating(numLostGames, cooldown) {
 function startTimer() {
   let last = Date.now();
   const interval = setInterval(() => {
-    let setNew = -1;
-    if (updateTimeLeft)
-      updateTimeLeft(Math.max(0, outsideLeft - Date.now() - last));
+    if (updateTimeLeft) {
+      const ll = Math.max(0, outsideLeft - Date.now() - last);
+      updateTimeLeft(ll);
+      outsideLeft = ll;
+    }
     setDisabled(outsideLeft > 0);
     if (outsideLeft <= 0) {
       console.log("removing tilt");
