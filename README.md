@@ -1,4 +1,6 @@
 <h1>Tilted Haven</h1>
-are you tired of getting tilted and loosing 2,000 points?
-we have the solution! install the extension from {pls remember to change this} and you will get sent to the haven when you start tilting.
+are you tired of getting tilted, raging, and loosing 2,000 points in one sitting?
+we have the solution!
+after installing the extension from  and setting it up with your username, you will get sent to the <a href="https://www.tilted-haven.netlify.app">tilted haven</a> when you start tilting. the haven has some things to do on it, but is mostly just preventing you from playing while tilted.
+
 
