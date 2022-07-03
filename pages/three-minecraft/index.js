@@ -139,6 +139,7 @@ const initScene = () => {
   };
   //listen for mouse right click
   document.addEventListener("mousedown", (event) => {
+    console.log("%cindex.js line:142 event", "color: #007acc;", event);
     // if left click
     if (event.button === 0) {
       if (intersections.forward && intersections.forward.length)
