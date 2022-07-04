@@ -154,7 +154,7 @@ function startTimer() {
       const elapsed = Date.now() - last;
       const ll = outsideLeft - elapsed;
       console.log("%c_app.js line:156 ll", "color: #007acc;", ll);
-      updateTimeLeft(ll);
+      updateTimeLeft(Math.max(0, ll));
       outsideLeft = ll;
     }
     setDisabled(outsideLeft > 0);
