@@ -80,6 +80,14 @@ export default function Home() {
             <div className={styles.buttons_container}>
               <Button
                 src=""
+                text="tic tac toe ai"
+                setSrc={(a) => {
+                  location.pathname += "/tic-tac-toe";
+                }}
+              ></Button>
+              <br></br>
+              <Button
+                src=""
                 text="Knight"
                 setSrc={(a) => {
                   location.pathname += "/knight";

@@ -5,20 +5,18 @@ import { useEffect } from "react";
 export default function Knight() {
   useEffect(() => {
     $("#frame").contents().find("head link, style").remove();
-    init();
+    init(undefined, undefined, {
+      header:
+        "i made this in like half a day. most of which was fighting with react. ('weird flex but ok')",
+    });
   }, []);
 
   return (
     <>
-      <h1>
-        this is the only game i actually put some time into. it took me like a
-        day, and most of it was fighting with react (yes. this is me flexing)
-      </h1>
-      <br />
       <iframe
-        src="https://www.funnyhowtheknightmoves.com/"
-        width="90%"
-        height="90%"
+        src="https://my-tic-tac-toe-ai.netlify.app//"
+        width="100%"
+        height="100%"
         className="fullscreen"
         id="frame"
       ></iframe>

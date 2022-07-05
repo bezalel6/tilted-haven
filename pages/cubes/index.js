@@ -4,6 +4,7 @@ import Manage, { add } from "./manager.js";
 // import CleanUp from "./script.js";
 
 export default function Cubes() {
+  // the fucking timer is breaking it
   useEffect(() => {
     init();
   }, []);

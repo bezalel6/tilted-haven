@@ -3,22 +3,30 @@ import "@styles/globals.css";
 import { useEffect, useState } from "react";
 import styles from "../styles/Buttons.module.css";
 
-let updateTimeLeft, outsideLeft, setDisabled;
+let updateTimeLeft, outsideLeft, setDisabled, updateHeader;
 
 const fixTop = ["minecraft"];
 let setterLost;
+let lateHeader;
 function Application({ Component, pageProps }) {
   const [left, setLeft] = useState(0);
   const [isHome, setIsHome] = useState(true);
   const [lichessDisabled, setDisabledd] = useState(true);
   const [currentUrl, setUrl] = useState();
   const [lostNumSS, setLost] = useState(0);
+  const [header, setHeader] = useState("");
   useEffect(() => {
     updateTimeLeft = setLeft;
     outsideLeft = left;
     setDisabled = setDisabledd;
     setterLost = setLost;
-    return () => (updateTimeLeft = setDisabled = null);
+    updateHeader = setHeader;
+    // setHeader("ddd");
+    if (lateHeader) {
+      setHeader(lateHeader);
+      lateHeader = null;
+    }
+    return () => (updateTimeLeft = setDisabled = updateHeader = null);
   });
   useEffect(() => {
     const obj = JSON.parse(localStorage.getItem("tilt"));
@@ -45,6 +53,7 @@ function Application({ Component, pageProps }) {
           : "")
       }
     >
+      {header && <p>{header}</p>}
       {lichessDisabled && lostNumSS && (
         <>
           you lost {lostNumSS} game{lostNumSS > 1 ? "s" : ""} in a row<br></br>
@@ -78,12 +87,21 @@ function Application({ Component, pageProps }) {
 
 export default Application;
 
-export const init = (numLostGames, cooldown) => {
+export const init = (numLostGames, cooldown, headerProp = {}) => {
   if (typeof window == "undefined") {
     return;
   }
   if (setterLost && numLostGames) setterLost(numLostGames);
-
+  console.log(
+    "%c_app.js line:89 updateHeader",
+    "color: #007acc;",
+    updateHeader
+  );
+  if (headerProp.header) {
+    if (!updateHeader) {
+      lateHeader = headerProp.header;
+    } else updateHeader(headerProp.header);
+  }
   const pressed = {};
   const magicKey = "Space";
   document.addEventListener("keydown", (e) => {
