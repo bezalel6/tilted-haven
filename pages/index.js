@@ -80,7 +80,7 @@ export default function Home() {
             <div className={styles.buttons_container}>
               <Button
                 src=""
-                text="tic tac toe ai"
+                text="tic tac toe"
                 setSrc={(a) => {
                   location.pathname += "/tic-tac-toe";
                 }}
