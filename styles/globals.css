@@ -112,6 +112,12 @@ body {
   height: 100vh;
   width: 100vw;
 }
+.most-fullscreen {
+  height: 100vh;
+  width: 100vw;
+  background-color: #fafafa;
+  transform: scale(0.9, 0.9);
+}
 .type-h1 {
   height: auto;
   font-size: clamp(1rem, 3vw + 1rem, 4rem);
