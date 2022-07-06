@@ -12,8 +12,6 @@ export default function Knight() {
 
   return (
     <>
-      this is the game i put the most time into.. like 4 hours. ('weird flex but
-      ok')
       <iframe
         src="https://my-tic-tac-toe-ai.netlify.app//"
         width="100%"
