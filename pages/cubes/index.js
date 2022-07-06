@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { init } from "pages/_app.js";
 import Manage, { add } from "./manager.js";
 // import CleanUp from "./script.js";
 
 export default function Cubes() {
+  const ref = useRef(<Manage></Manage>);
   // the fucking timer is breaking it
   useEffect(() => {
     init();
@@ -15,7 +16,8 @@ export default function Cubes() {
         <p> (yes. this is me flexing) </p>
         <h4>click & drag to spin</h4>
       </div>
-      <Manage></Manage>
+      {/* <Manage></Manage> */}
+      {ref.current}
     </>
   );
 }
