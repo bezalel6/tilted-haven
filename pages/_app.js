@@ -60,8 +60,16 @@ function Application({ Component, pageProps }) {
         </>
       )}
 
-      {convertMsToHMS(left)}
+      {left ? convertMsToHMS(left) : ""}
       <div className={styles.buttons_container}>
+        {!isHome && (
+          <Button
+            text="home"
+            setSrc={() => {
+              location.pathname = "";
+            }}
+          ></Button>
+        )}
         {!lichessDisabled && (
           <Button
             text="lichess"
@@ -69,14 +77,6 @@ function Application({ Component, pageProps }) {
               location.replace("https://lichess.org/");
             }}
             disabled={lichessDisabled}
-          ></Button>
-        )}
-        {!isHome && (
-          <Button
-            text="home"
-            setSrc={() => {
-              location.pathname = "";
-            }}
           ></Button>
         )}
       </div>
@@ -190,6 +190,11 @@ function padTo2Digits(num) {
 }
 
 function convertMsToHMS(milliseconds) {
+  console.log(
+    "%c_app.js line:193 milliseconds",
+    "color: #007acc;",
+    milliseconds
+  );
   let seconds = Math.floor(milliseconds / 1000);
   let minutes = Math.floor(seconds / 60);
   let hours = Math.floor(minutes / 60);

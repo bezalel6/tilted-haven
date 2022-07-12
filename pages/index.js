@@ -88,21 +88,22 @@ export default function Home() {
               <br></br>
               <Button
                 src=""
-                text="Knight"
+                title="not mine"
+                text="Knight moves"
                 setSrc={(a) => {
                   location.pathname += "/knight";
                 }}
               ></Button>
-              <Button
+              {/* <Button
                 src=""
                 text="Minecraft"
                 setSrc={(a) => {
                   location.pathname += "/three-minecraft";
                 }}
-              ></Button>
+              ></Button> */}
               <Button
                 src=""
-                text="Cubes"
+                text="Cubes thing"
                 setSrc={(a) => {
                   location.pathname += "/cubes";
                 }}
