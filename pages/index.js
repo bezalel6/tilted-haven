@@ -41,7 +41,7 @@ export default function Home() {
 
       <main>
         <MyHeader className="type-h1"></MyHeader>
-
+        <Info></Info>
         <iframe
           className={styles.frame}
           width="100%"
@@ -75,7 +75,7 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.container}>
-            <h2>Games</h2>
+            <h2>Other stuff</h2>
             <br></br>
             <div className={styles.buttons_container}>
               <Button
@@ -121,5 +121,19 @@ export default function Home() {
         <Footer />
       </main>
     </div>
+  );
+}
+
+function Info() {
+  return (
+    <>
+      <section>
+        hi, i'm a dumbass. and i have a tendency to lose a couple games, get
+        mad, and go on to lose like 20 games in a row. so i made something to
+        stop me from playing while tilted. this website is mostly just a
+        placeholder until you calm down, but i put a couple things to maybe pass
+        the time
+      </section>
+    </>
   );
 }

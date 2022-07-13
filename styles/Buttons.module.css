@@ -3,7 +3,7 @@
   flex-direction: row;
   /* set 2 columns */
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
 
   align-items: center;
   /* justify-content: center; */

@@ -10,6 +10,10 @@ export default function Knight() {
 
   return (
     <>
+      <p>
+        i didn't make this. this is just an iframe of{" "}
+        <a href="https://www.funnyhowtheknightmoves.com/">this website</a>{" "}
+      </p>
       <iframe
         src="https://www.funnyhowtheknightmoves.com/"
         // width="90%"

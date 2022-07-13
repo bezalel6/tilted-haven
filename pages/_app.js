@@ -190,11 +190,6 @@ function padTo2Digits(num) {
 }
 
 function convertMsToHMS(milliseconds) {
-  console.log(
-    "%c_app.js line:193 milliseconds",
-    "color: #007acc;",
-    milliseconds
-  );
   let seconds = Math.floor(milliseconds / 1000);
   let minutes = Math.floor(seconds / 60);
   let hours = Math.floor(minutes / 60);
